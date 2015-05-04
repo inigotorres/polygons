@@ -16,5 +16,9 @@ describe "A polygon" do
     it "can't be created if the sum of two sides is shorter than the third" do
       expect{Triangle.new(sides: [1,1,5])}.to raise_error
     end
+    it "calculates the correct perimeter" do
+      a_triangle = Triangle.new(sides: [3,3,3])
+      expect(a_triangle.perimeter).to eq(9)
+    end
   end
 end
