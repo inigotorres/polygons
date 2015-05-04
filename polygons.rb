@@ -6,7 +6,7 @@ class Polygon
   def initialize(args={})
     initialize_sides(args[:sides])
 
-    raise 'Polygon is not valid (or a check of whether it is valid has not been made)' unless valid?
+     valid?
   end
 
   def initialize_sides list_of_sides 
@@ -23,10 +23,18 @@ class Polygon
     end
     list_of_sides
   end
+
+  def valid?
+    raise "Must check whether Polygon is valid in subclass"
+  end
+
+  def number_of_sides
+    @sides.length
+  end
 end
 
 class Triangle < Polygon
   def valid?
-     @sides.length == 3
+    raise "Triangle must have three sides" if number_of_sides != 3
   end
 end

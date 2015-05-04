@@ -2,7 +2,7 @@ require './polygons'
 
 describe "A polygon" do
   it "can't have negative sides" do
-    expect{Triangle.new(sides: [-1])}.to raise_error
+    expect{Polygon.new(sides: [-1])}.to raise_error
   end
 
   context "when it is a triangle" do
