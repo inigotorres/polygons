@@ -5,8 +5,16 @@ class Polygon
 
   def initialize(args={})
     initialize_sides(args[:sides])
+    post_initialize
 
     valid?
+  end
+
+  def valid?
+    raise "Must check whether Polygon is valid in subclass"
+  end
+
+  def post_initialize
   end
 
   def sides_as_list
@@ -15,10 +23,6 @@ class Polygon
       list_of_sides << side.to_s
     end
     list_of_sides
-  end
-
-  def valid?
-    raise "Must check whether Polygon is valid in subclass"
   end
 
   def number_of_sides
@@ -48,13 +52,15 @@ class Triangle < Polygon
     raise "Triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
   end
 
-  def area
+  def post_initialize
     list_of_sides = sides_as_list
-    a = list_of_sides[0]
-    b = list_of_sides[1]
-    c = list_of_sides[2]
+    @a = list_of_sides[0]
+    @b = list_of_sides[1]
+    @c = list_of_sides[2]
+  end
 
-    area = (a+b-c) * (a-b+c) * (-a+b+c) * (a+b+c)
+  def area
+    area = (@a+@b-@c) * (@a-@b+@c) * (-@a+@b+@c) * (@a+@b+@c)
     area = Math.sqrt(area)
     area = area / 4
     area
@@ -62,15 +68,10 @@ class Triangle < Polygon
 
   private
   def acceptable_sides?
-    list_of_sides = sides_as_list
-    a = list_of_sides[0]
-    b = list_of_sides[1]
-    c = list_of_sides[2]
-
     is_acceptable = true
-    is_acceptable = false if a > (b+c)
-    is_acceptable = false if b > (a+c)
-    is_acceptable = false if c > (a+b)   
+    is_acceptable = false if @a > (@b+@c)
+    is_acceptable = false if @b > (@a+@c)
+    is_acceptable = false if @c > (@a+@b)   
     is_acceptable 
   end
 end
