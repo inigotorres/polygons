@@ -20,5 +20,9 @@ describe "A polygon" do
       a_triangle = Triangle.new(sides: [3,3,3])
       expect(a_triangle.perimeter).to eq(9)
     end
+    it "calculates the correct area" do
+      a_triangle = Triangle.new(sides:[3,4,5])
+      expect(a_triangle.area).to eq(6)
+    end
   end
 end

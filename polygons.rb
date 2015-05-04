@@ -48,6 +48,9 @@ class Triangle < Polygon
     raise "Triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
   end
 
+  def area
+  end
+
   private
   def acceptable_sides?
     list_of_sides = sides_as_list
