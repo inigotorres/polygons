@@ -1,27 +1,32 @@
+require_relative 'sides.rb'
+
 class Polygon
   attr_reader :sides
 
   def initialize(args={})
-    @sides = args[:sides]
+    initialize_sides(args[:sides])
 
     raise 'Polygon is not valid (or a check of whether it is valid has not been made)' unless valid?
   end
 
-  def valid?
-    @sides.each do |side|
-      return false if side <= 0
+  def initialize_sides list_of_sides 
+    @sides = []
+    list_of_sides.each do |side|
+      @sides << Side.new(side)
     end
-    
-    post_valid? 
   end
 
-  def post_valid?
-    raise 'post_valid must be implemented inside child class'
+  def to_s
+    list_of_sides = []
+    @sides.each do |side|
+      list_of_sides << side.to_s
+    end
+    list_of_sides
   end
 end
 
 class Triangle < Polygon
-  def post_valid?
+  def valid?
      @sides.length == 3
   end
 end
