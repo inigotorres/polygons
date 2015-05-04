@@ -9,13 +9,6 @@ class Polygon
      valid?
   end
 
-  def initialize_sides list_of_sides 
-    @sides = []
-    list_of_sides.each do |side|
-      @sides << Side.new(side)
-    end
-  end
-
   def sides_as_list
     list_of_sides = []
     @sides.each do |side|
@@ -30,6 +23,14 @@ class Polygon
 
   def number_of_sides
     @sides.length
+  end
+
+  private
+  def initialize_sides list_of_sides 
+    @sides = []
+    list_of_sides.each do |side|
+      @sides << Side.new(side)
+    end
   end
 end
 
@@ -46,13 +47,10 @@ class Triangle < Polygon
     b = list_of_sides[1]
     c = list_of_sides[2]
 
-    puts a.to_s
-    puts b
-    puts c
-
-    return false if a > (b+c)
-    return false if b > (a+c)
-    return false if c > (a+b)   
-    true
+    is_acceptable = true
+    is_acceptable = false if a > (b+c)
+    is_acceptable = false if b > (a+c)
+    is_acceptable = false if c > (a+b)   
+    is_acceptable 
   end
 end
