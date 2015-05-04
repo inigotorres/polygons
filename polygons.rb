@@ -6,7 +6,7 @@ class Polygon
   def initialize(args={})
     initialize_sides(args[:sides])
 
-     valid?
+    valid?
   end
 
   def sides_as_list
@@ -23,6 +23,14 @@ class Polygon
 
   def number_of_sides
     @sides.length
+  end
+
+  def perimeter
+    sum = 0
+    sides_as_list.each do |side_length|
+      sum += side_length 
+    end
+    sum
   end
 
   private
