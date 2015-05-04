@@ -49,6 +49,15 @@ class Triangle < Polygon
   end
 
   def area
+    list_of_sides = sides_as_list
+    a = list_of_sides[0]
+    b = list_of_sides[1]
+    c = list_of_sides[2]
+
+    area = (a+b-c) * (a-b+c) * (-a+b+c) * (a+b+c)
+    area = Math.sqrt(area)
+    area = area / 4
+    area
   end
 
   private
