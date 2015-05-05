@@ -56,31 +56,41 @@ class Polygon
 end
 
 class Triangle < Polygon
+  attr_reader :longest_side, :medium_side, :shortest_side
+
   def valid?
     raise "A triangle must have three sides" if number_of_sides != 3
     raise "A triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
   end
 
   def post_initialize
-    @a = @sides[0].length
-    @b = @sides[1].length
-    @c = @sides[2].length
+    sides_in_order = @sides.sort {|side| side.length}
+    @shortest_side = sides_in_order.last.length
+    @medium_side = sides_in_order[1].length
+    @longest_side = sides_in_order.first.length
+
+    @a = @longest_side
+    @b = @medium_side
+    @c = @shortest_side
   end
 
   def area
     area = (@a+@b-@c) * (@a-@b+@c) * (-@a+@b+@c) * (@a+@b+@c)
     area = Math.sqrt(area)
     area = area / 4
-    area
   end
 
   def equilateral?
     regular?
   end
 
+  def right_angle?
+    @longest_side**2 == @medium_side**2 + @shortest_side**2
+  end
+
   private
   def acceptable_sides?
-    (@a < @b+@c) && (@b < @a+@c) && (@c < @a+@b) 
+    @longest_side < @medium_side + @shortest_side    
   end
 end
 

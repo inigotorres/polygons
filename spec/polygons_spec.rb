@@ -35,6 +35,13 @@ describe "A polygon" do
       expect(another_triangle.regular?).to be false
       expect(another_triangle.equilateral?).to be false
     end
+    it "knows if it is a right-angle triangle" do
+      a_triangle = Triangle.new(sides: [3,4,5])
+      expect(a_triangle.right_angle?).to be true
+
+      another_triangle = Triangle.new(sides: [2,2,2])
+      expect(another_triangle.right_angle?).to be false
+    end
   end
 
   context "when it is a square" do
