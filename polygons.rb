@@ -37,6 +37,9 @@ class Polygon
     sum
   end
 
+  def regular?
+  end
+
   private
   def initialize_sides list_of_sides 
     @sides = []
@@ -64,6 +67,9 @@ class Triangle < Polygon
     area = Math.sqrt(area)
     area = area / 4
     area
+  end
+
+  def equilateral?
   end
 
   private

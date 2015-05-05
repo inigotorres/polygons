@@ -24,5 +24,14 @@ describe "A polygon" do
       a_triangle = Triangle.new(sides:[3,4,5])
       expect(a_triangle.area).to eq(6)
     end
+    it "knows it is a regular (equilateral) triangle" do
+      a_triangle = Triangle.new(sides: [3,3,3])
+      expect(a_triangle.regular?).to be true
+      expect(a_triangle.equilateral?).to be true
+
+      another_triangle = Triangle.new(sides: [4,3,3])
+      expect(another_triangle.regular?).to be false
+      expect(another_triangle.equilateral?).to be false
+    end
   end
 end
