@@ -88,6 +88,10 @@ class Triangle < Polygon
     @longest_side**2 == @medium_side**2 + @shortest_side**2
   end
 
+  def isosceles?
+
+  end
+
   private
   def acceptable_sides?
     @longest_side < @medium_side + @shortest_side    
