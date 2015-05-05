@@ -92,6 +92,10 @@ class Triangle < Polygon
     exactly_two_sides_are_equal?
   end
 
+  def scalene?
+    !at_least_two_sides_are_equal?
+  end
+
   private
   def acceptable_sides?
     @longest_side.length < @medium_side.length + @shortest_side.length    
@@ -126,7 +130,7 @@ class Rectangle < Polygon
     raise "A rectangle must have four sides" if number_of_sides != 4
     raise "A rectangle can't be regular" if regular?
     raise "A rectangle must have equal opposite sides" if !opposites_are_equal?  
-end
+  end
 
   def post_initialize
     sides_in_order = @sides.sort{|side| side.length}

@@ -49,6 +49,13 @@ describe "A polygon" do
       another_triangle = Triangle.new(sides: [1,1,1])
       expect(another_triangle.isosceles?).to be false
     end
+    it "knows if it is a scalene triangle" do
+      a_triangle = Triangle.new(sides: [3,4,5])
+      expect(a_triangle.scalene?).to be true
+
+      another_triangle = Triangle.new(sides: [2,2,3])
+      expect(another_triangle.scalene?).to be false 
+    end
   end
 
   context "when it is a square" do
