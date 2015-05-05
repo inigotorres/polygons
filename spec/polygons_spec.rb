@@ -8,7 +8,7 @@ describe "A polygon" do
   context "when it is a triangle" do
     it "can be created" do
       a_triangle = Triangle.new(sides: [1,2,2])
-      expect(a_triangle.sides_as_list).to eq([1,2,2])
+      expect(a_triangle.convert_sides_to_array).to eq([1,2,2])
     end
     it "can't be created if number of sides is not three" do 
       expect{Triangle.new(sides: [1,2,3,4])}.to raise_error
@@ -24,7 +24,7 @@ describe "A polygon" do
       a_triangle = Triangle.new(sides:[3,4,5])
       expect(a_triangle.area).to eq(6)
     end
-    it "knows it is a regular (equilateral) triangle" do
+    it "knows if it is a regular (equilateral) triangle" do
       a_triangle = Triangle.new(sides: [3,3,3])
       expect(a_triangle.regular?).to be true
       expect(a_triangle.equilateral?).to be true

@@ -17,12 +17,12 @@ class Polygon
   def post_initialize
   end
 
-  def sides_as_list
-    list_of_sides = []
+  def convert_sides_to_array
+    array_of_sides = []
     @sides.each do |side|
-      list_of_sides << side.to_s
+      array_of_sides << side.to_s
     end
-    list_of_sides
+    array_of_sides
   end
 
   def number_of_sides
@@ -31,13 +31,19 @@ class Polygon
 
   def perimeter
     sum = 0
-    sides_as_list.each do |side_length|
-      sum += side_length 
+    @sides.each do |side|
+      sum += side.length 
     end
     sum
   end
 
   def regular?
+    first_side = @sides.first
+
+    @sides.each do |side|
+      return false if side.length != first_side.length
+    end
+    true
   end
 
   private
@@ -56,10 +62,9 @@ class Triangle < Polygon
   end
 
   def post_initialize
-    list_of_sides = sides_as_list
-    @a = list_of_sides[0]
-    @b = list_of_sides[1]
-    @c = list_of_sides[2]
+    @a = @sides[0].length
+    @b = @sides[1].length
+    @c = @sides[2].length
   end
 
   def area
@@ -70,6 +75,7 @@ class Triangle < Polygon
   end
 
   def equilateral?
+    regular?
   end
 
   private
