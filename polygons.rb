@@ -65,17 +65,17 @@ class Triangle < Polygon
 
   def post_initialize
     sides_in_order = @sides.sort {|side| side.length}
-    @shortest_side = sides_in_order.last.length
-    @medium_side = sides_in_order[1].length
-    @longest_side = sides_in_order.first.length
-
-    @a = @longest_side
-    @b = @medium_side
-    @c = @shortest_side
+    @shortest_side = sides_in_order.last
+    @medium_side = sides_in_order[1]
+    @longest_side = sides_in_order.first
   end
 
   def area
-    area = (@a+@b-@c) * (@a-@b+@c) * (-@a+@b+@c) * (@a+@b+@c)
+    a = @longest_side.length
+    b = @medium_side.length
+    c = @shortest_side.length
+
+    area = (a+b-c) * (a-b+c) * (-a+b+c) * (a+b+c)
     area = Math.sqrt(area)
     area = area / 4
   end
@@ -85,18 +85,25 @@ class Triangle < Polygon
   end
 
   def right_angle?
-    @longest_side**2 == @medium_side**2 + @shortest_side**2
+    @longest_side.length**2 == @medium_side.length**2 + @shortest_side.length**2
   end
 
   def isosceles?
-    return false if equilateral?
-
-    (@a == @b) || (@a == @c) || (@b == @c)
+    exactly_two_sides_are_equal?
   end
 
   private
   def acceptable_sides?
-    @longest_side < @medium_side + @shortest_side    
+    @longest_side.length < @medium_side.length + @shortest_side.length    
+  end
+
+  def at_least_two_sides_are_equal?
+    @longest_side.length == @medium_side.length ||
+    @medium_side.length == @shortest_side.length  
+  end
+
+  def exactly_two_sides_are_equal?
+    at_least_two_sides_are_equal? && !equilateral?  
   end
 end
 
@@ -118,8 +125,8 @@ class Rectangle < Polygon
   def valid?
     raise "A rectangle must have four sides" if number_of_sides != 4
     raise "A rectangle can't be regular" if regular?
-    raise "A rectangle must have equal opposite sides" if !acceptable_sides?
-  end
+    raise "A rectangle must have equal opposite sides" if !opposites_are_equal?  
+end
 
   def post_initialize
     sides_in_order = @sides.sort{|side| side.length}
@@ -132,7 +139,7 @@ class Rectangle < Polygon
   end
 
   private
-  def acceptable_sides?
+  def opposites_are_equal?
     base_counter = 0
     height_counter = 0
 

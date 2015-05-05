@@ -9,7 +9,7 @@ class Side
   def valid?
     @length > 0
   end
-
+ 
   def to_s
     @length
   end
