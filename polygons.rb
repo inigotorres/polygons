@@ -87,3 +87,7 @@ class Triangle < Polygon
     is_acceptable 
   end
 end
+
+class Square < Polygon
+
+end

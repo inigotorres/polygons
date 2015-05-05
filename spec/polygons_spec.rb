@@ -33,5 +33,20 @@ describe "A polygon" do
       expect(another_triangle.regular?).to be false
       expect(another_triangle.equilateral?).to be false
     end
+
+  context "when it is a square" do
+    it "can be created" do
+      a_square = Square.new(sides: [1,1,1,1])
+      expect(a_square.convert_sides_to_array).to eq([1,1,1,1])
+    end
+    it "can't be created if it doesn't have four sides" do
+      error_message = "A square must have four sides"
+      expect{Square.new(sides: [1,1,1])}.to raise_error(error_message)
+    end
+    it "can't be created if it is not regular" do
+      error_message = "All the sides of a square must be the same length"
+      expect{Square.new(sides: [1,1,1,2])}.to raise_error(error_message)
+    end
+  end
   end
 end
