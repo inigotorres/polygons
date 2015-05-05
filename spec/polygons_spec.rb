@@ -38,8 +38,9 @@ describe "A polygon" do
   end
 
   context "when it is a square" do
+    a_square = Square.new(sides: [1,1,1,1])
+
     it "can be created" do
-      a_square = Square.new(sides: [1,1,1,1])
       expect(a_square.convert_sides_to_array).to eq([1,1,1,1])
     end
     it "can't be created if it doesn't have four sides" do
@@ -49,6 +50,12 @@ describe "A polygon" do
     it "can't be created if it is not regular" do
       error_message = "All the sides of a square must be the same length"
       expect{Square.new(sides: [1,1,1,2])}.to raise_error(error_message)
+    end
+    it "calculates the correct perimeter" do
+      expect(a_square.perimeter).to eq(4)
+    end
+    it "calculates the correct area" do
+      expect(a_square.area).to eq(1)
     end
   end
 end
