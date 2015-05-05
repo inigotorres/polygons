@@ -33,6 +33,7 @@ describe "A polygon" do
       expect(another_triangle.regular?).to be false
       expect(another_triangle.equilateral?).to be false
     end
+  end
 
   context "when it is a square" do
     it "can be created" do
@@ -47,6 +48,5 @@ describe "A polygon" do
       error_message = "All the sides of a square must be the same length"
       expect{Square.new(sides: [1,1,1,2])}.to raise_error(error_message)
     end
-  end
   end
 end

@@ -89,5 +89,8 @@ class Triangle < Polygon
 end
 
 class Square < Polygon
-
+  def valid?
+    raise "A square must have four sides" if number_of_sides != 4
+    raise "All the sides of a square must be the same length" if !regular?
+  end
 end
