@@ -11,10 +11,12 @@ describe "A polygon" do
       expect(a_triangle.convert_sides_to_array).to eq([1,2,2])
     end
     it "can't be created if number of sides is not three" do 
-      expect{Triangle.new(sides: [1,2,3,4])}.to raise_error
+      error_message = "A triangle must have three sides"
+      expect{Triangle.new(sides: [1,2,3,4])}.to raise_error(error_message)
     end
     it "can't be created if the sum of two sides is shorter than the third" do
-      expect{Triangle.new(sides: [1,1,5])}.to raise_error
+      error_message = "A triangle can't have one side longer than the sum of the others"
+      expect{Triangle.new(sides: [1,1,5])}.to raise_error(error_message)
     end
     it "calculates the correct perimeter" do
       a_triangle = Triangle.new(sides: [3,3,3])

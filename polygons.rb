@@ -57,8 +57,8 @@ end
 
 class Triangle < Polygon
   def valid?
-    raise "Triangle must have three sides" if number_of_sides != 3
-    raise "Triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
+    raise "A triangle must have three sides" if number_of_sides != 3
+    raise "A triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
   end
 
   def post_initialize
