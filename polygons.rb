@@ -111,6 +111,10 @@ class Rectangle < Polygon
     @height_length = sides_in_order.last.length
   end
 
+  def area
+    @base_length * @height_length
+  end
+
   private
   def acceptable_sides?
     base_counter = 0

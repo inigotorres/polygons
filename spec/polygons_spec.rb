@@ -78,5 +78,11 @@ describe "A polygon" do
       expect{Rectangle.new(sides: [2,1,2,2])}.to raise_error(error_message)
       expect{Rectangle.new(sides: [2,2,3,4])}.to raise_error(error_message)
     end
+    it "calculates the correct perimeter" do
+      expect(a_rectangle.perimeter).to eq(6)
+    end
+    it "calculates the correct area" do
+      expect(a_rectangle.area).to eq(2)
+    end
   end
 end
