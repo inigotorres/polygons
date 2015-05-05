@@ -89,7 +89,9 @@ class Triangle < Polygon
   end
 
   def isosceles?
+    return false if equilateral?
 
+    (@a == @b) || (@a == @c) || (@b == @c)
   end
 
   private
