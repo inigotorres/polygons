@@ -1,4 +1,7 @@
-require './polygons'
+require './polygon.rb'
+require './triangle.rb'
+require './square.rb'
+require './rectangle.rb'
 
 describe "A polygon" do
   it "can't have negative sides" do

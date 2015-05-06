@@ -1,4 +1,4 @@
-require './sides'
+require './side'
 
 describe "A side" do
   it "can be created and has property length" do
