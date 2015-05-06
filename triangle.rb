@@ -5,7 +5,7 @@ class Triangle < Polygon
 
   def valid?
     raise "A triangle must have three sides" if number_of_sides != 3
-    raise "A triangle can't have one side longer than the sum of the others" if !acceptable_sides?    
+    raise "A triangle can't have one side longer than the sum of the others" unless acceptable_sides? 
   end
 
   def post_initialize
@@ -38,7 +38,7 @@ class Triangle < Polygon
   end
 
   def scalene?
-    !at_least_two_sides_are_equal?
+    all_sides_are_different?
   end
 
   private
@@ -46,12 +46,12 @@ class Triangle < Polygon
     @longest_side.length < @medium_side.length + @shortest_side.length    
   end
 
-  def at_least_two_sides_are_equal?
-    @longest_side.length == @medium_side.length ||
-    @medium_side.length == @shortest_side.length  
+  def all_sides_are_different?
+    @longest_side.length != @medium_side.length &&
+    @medium_side.length != @shortest_side.length  
   end
 
   def exactly_two_sides_are_equal?
-    at_least_two_sides_are_equal? && !equilateral?
+    !all_sides_are_different? && !equilateral?
   end
 end
